@@ -3,7 +3,7 @@ set -xe
 
 # A POSIX variable
 OPTIND=1 # Reset in case getopts has been used previously in the shell.
-PLATFORM=linux/amd64,linux/arm64,linux/arm/v7,linux/arm/v6,linux/ppc64le,linux/s390x,linux/386
+PLATFORM=linux/amd64,linux/arm64,linux/arm/v7,linux/ppc64le,linux/s390x
 PUSH="--load"
 
 while getopts "t:d:x:p" opt; do
