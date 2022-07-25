@@ -6,10 +6,8 @@ OPTIND=1 # Reset in case getopts has been used previously in the shell.
 PLATFORM=linux/amd64,linux/arm64,linux/arm/v7,linux/arm/v6,linux/ppc64le,linux/s390x,linux/386
 PUSH="--load"
 
-while getopts "r:t:d:x:p" opt; do
+while getopts "t:d:x:p" opt; do
     case "$opt" in
-        r)  REPO=$OPTARG
-        ;;
         t)  TAG_VER=$OPTARG
         ;;
         d)  DOCKER_REPO=$OPTARG

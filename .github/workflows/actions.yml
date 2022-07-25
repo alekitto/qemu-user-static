@@ -30,7 +30,7 @@ jobs:
       - name: Build
         run: |
           docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_TOKEN }}
-          ./run.sh -t "${{ env.VERSION }}" -r "${{ env.GITHUB_REPOSITORY }}" -d "${{ env.DOCKER_REPO }}" -x linux/amd64
+          ./run.sh -t "${{ env.VERSION }}" -d "${{ env.DOCKER_REPO }}" -x linux/amd64
       - name: Test
         run: ./test.sh -d "${{ env.DOCKER_REPO }}"
       - name: Push multi-arch

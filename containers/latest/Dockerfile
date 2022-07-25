@@ -1,5 +1,9 @@
 FROM ubuntu AS download_qemu
 
+RUN mkdir -p /app
+
+WORKDIR /app
+
 RUN apt-get update && \
     apt-get download qemu-user-static && \
     dpkg-deb -R qemu-user-static_*.deb /app/releases
