@@ -36,4 +36,4 @@ jobs:
       - name: Push multi-arch
         run: |
           docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_TOKEN }}
-          ./run.sh -t "${{ env.VERSION }}" -r "${{ env.GITHUB_REPOSITORY }}" -d "${{ env.DOCKER_REPO }}" -p
+          ./run.sh -t "${{ env.VERSION }}" -d "${{ env.DOCKER_REPO }}" -p
