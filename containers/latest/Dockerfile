@@ -4,6 +4,9 @@ RUN mkdir -p /app
 
 WORKDIR /app
 
+# Non-amd64 builds will search for tar executable in /usr/local/sbin. Create a symlink.
+RUN ln -sv /usr/bin/tar /usr/local/sbin/tar
+
 RUN apt-get update && \
     apt-get download qemu-user-static && \
     dpkg-deb -R qemu-user-static_*.deb /app/releases
