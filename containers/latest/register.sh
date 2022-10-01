@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -ex
+
 QEMU_BIN_DIR=${QEMU_BIN_DIR:-/usr/bin}
 PROC_PREFIX=${PROC_PREFIX:-}
 
