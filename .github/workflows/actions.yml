@@ -27,6 +27,7 @@ jobs:
       - name: Set variables
         run: |
           echo "DOCKER_REPO=docker.io/$GITHUB_REPOSITORY" >> $GITHUB_ENV
+          echo "GHCR_REPO=ghcr.io/$GITHUB_REPOSITORY" >> $GITHUB_ENV
       - name: Build
         run: |
           docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_TOKEN }}
@@ -36,4 +37,6 @@ jobs:
       - name: Push multi-arch
         run: |
           docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_TOKEN }}
+          docker login ghcr.io -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }}
           ./run.sh -t "${{ env.VERSION }}" -d "${{ env.DOCKER_REPO }}" -p
+          ./run.sh -t "${{ env.VERSION }}" -d "${{ env.GHCR_REPO }}" -p
