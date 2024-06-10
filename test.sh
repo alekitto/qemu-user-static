@@ -28,7 +28,7 @@ cat /proc/sys/fs/binfmt_misc/qemu-aarch64
 grep -q '^flags: F$' /proc/sys/fs/binfmt_misc/qemu-aarch64
 
 # It should output the result of "uname -m".
-docker pull arm64v8/ubuntu
+docker pull --platform=linux/arm64 arm64v8/ubuntu
 docker run --rm -t arm64v8/ubuntu uname -m
 # It should install a package.
 docker build --rm -t "test/latest/ubuntu" -<<EOF
@@ -38,12 +38,12 @@ RUN apt-get update && \
 EOF
 
 # It should output the result of "uname -m".
-docker pull arm64v8/fedora
+docker pull --platform=linux/arm64 arm64v8/fedora
 docker run --rm -t arm64v8/fedora uname -m
 # It should install a package.
 # TODO: Comment out as it takes a time.
 # docker build --rm -t "test/latest/fedora" -<<EOF
-# FROM arm64v8/fedora
+# FROM --platform=linux/arm64 arm64v8/fedora
 # RUN dnf -y upgrade && \
 #     dnf -y install gcc
 # EOF
@@ -69,7 +69,7 @@ grep -q '^flags: $' /proc/sys/fs/binfmt_misc/qemu-aarch64
 # Integration test
 docker build --rm -t "test/integration/ubuntu" -<<EOF
 FROM ${DOCKER_REPO}:latest as qemu
-FROM arm64v8/ubuntu
+FROM --platform=linux/arm64 arm64v8/ubuntu
 COPY --from=qemu /usr/bin/qemu-aarch64-static /usr/bin
 EOF
 docker run --rm -t "test/integration/ubuntu" uname -m
