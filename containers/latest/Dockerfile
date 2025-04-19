@@ -1,5 +1,5 @@
-# syntax=docker/dockerfile:1.7
-FROM debian:sid-20240513 AS download_qemu
+# syntax=docker/dockerfile:1.15
+FROM debian:sid-20250407 AS download_qemu
 
 RUN mkdir -p /app
 
@@ -16,7 +16,7 @@ FROM debian:stable-slim
 
 ENV QEMU_BIN_DIR=/usr/bin PROC_PREFIX=""
 ADD --link ./register.sh /register
-ADD --link https://raw.githubusercontent.com/qemu/qemu/v7.2.0/scripts/qemu-binfmt-conf.sh /qemu-binfmt-conf.sh
+ADD --link https://raw.githubusercontent.com/qemu/qemu/v10.0.0-rc3/scripts/qemu-binfmt-conf.sh /qemu-binfmt-conf.sh
 
 RUN sed -i 's/\/proc\/sys\/fs\/binfmt_misc/$PROC_PREFIX\/proc\/sys\/fs\/binfmt_misc/' /qemu-binfmt-conf.sh && \
     chmod +x /qemu-binfmt-conf.sh
