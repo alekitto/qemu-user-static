@@ -32,7 +32,7 @@ docker pull --platform=linux/arm64 arm64v8/ubuntu
 docker run --rm -t arm64v8/ubuntu uname -m
 # It should install a package.
 docker build --rm -t "test/latest/ubuntu" -<<EOF
-FROM arm64v8/ubuntu
+FROM --platform=linux/arm64 arm64v8/ubuntu
 RUN apt-get update && \
     apt-get -y install gcc
 EOF

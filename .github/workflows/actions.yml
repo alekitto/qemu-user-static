@@ -18,8 +18,8 @@ jobs:
   qemu-user-static:
     runs-on: ubuntu-latest
     env:
-      VERSION: 8.2.4-2
-      ORIGIN_VERSION: 8.2.4+ds-2
+      VERSION: 10.0.2
+      ORIGIN_VERSION: 10.0.2+ds-2
     steps:
       - uses: actions/checkout@v4
       - name: Set up Docker Buildx
